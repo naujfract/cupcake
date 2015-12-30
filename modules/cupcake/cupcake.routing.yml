@@ -1,7 +1,31 @@
-cupcake:
+
+cupcake.cupcake:
   path: '/cupcake'
   defaults:
-    _content: '\Drupal\cupcake\Controller\DemoController::demo'
-    _title: 'CUpcake store'
+    _controller: '\Drupal\cupcake\Controller\CupcakeController::cupcake'
+    _title: 'Cupcake'
+  requirements:
+    _permission: 'access content'
+
+cupcake.form:
+  path: '/cupcake/form'
+  defaults:
+    _form: '\Drupal\cupcake\Form\DemoForm'
+    _title: 'Demo Form'
+  requirements:
+    _permission: 'access content'
+
+cupcake.multistep_one:
+  path: '/cupcake/multistep-one'
+  defaults:
+    _form: '\Drupal\cupcake\Form\Multistep\MultistepOneForm'
+    _title: 'First form'
+  requirements:
+    _permission: 'access content'
+cupcake.multistep_two:
+  path: '/cupcake/multistep-two'
+  defaults:
+    _form: '\Drupal\cupcake\Form\Multistep\MultistepTwoForm'
+    _title: 'Second form'
   requirements:
     _permission: 'access content'

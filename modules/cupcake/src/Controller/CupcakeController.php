@@ -13,7 +13,8 @@ class CupcakeController {
   /**
    * Generates an example page.
    */
-  public function demo() {
+  public function cupcake() {
+      echo "pasa por acá";
     return array(
       '#markup' => t('Hello World!'),
     );

@@ -1,5 +1,5 @@
-name: Cupcake test store
-description: Creates a store
+name: Hello World Module
+description: Creates a page showing "Hello World".
 package: Custom
 
 type: module
@@ -10,7 +10,7 @@ dependencies:
   - link
   - views
 
-configure: cupcake_module.settings
+configure: hello_world.settings
 
 hidden: true
 
