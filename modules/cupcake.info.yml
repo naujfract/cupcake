@@ -1,0 +1,19 @@
+name: Cupcake test store
+description: Creates a store
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+  - datetime
+  - link
+  - views
+
+configure: cupcake.settings
+
+hidden: true
+
+# Note: do not add the 'version'  property yourself!
+# It will be added automatically by the packager on drupal.org.
+version: 1.0
