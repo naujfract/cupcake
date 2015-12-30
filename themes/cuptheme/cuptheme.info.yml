@@ -1,0 +1,14 @@
+name: Cuptheme
+type: theme
+description: This is a test thame for the cupcake store
+core: 8.x
+libraries:
+  - cuptheme/global-styling
+stylesheets-remove:
+  - '@classy/css/components/tabs.css'
+  - core/assets/vendor/normalize-css/normalize.css
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'Sidebar first'
+  footer: Footer
