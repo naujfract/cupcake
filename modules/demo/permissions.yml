@@ -1,0 +1,6 @@
+administer entity:
+  title: 'Administer Demo entity'
+  description: 'Allows user to administer Demo products.'
+administer types:
+  title: 'Administer Demo types'
+  description: 'Allows user to administer Demo types.'

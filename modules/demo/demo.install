@@ -1,0 +1,138 @@
+<?php
+/*
+ * Implements hook_schema().
+ */
+function demo_schema() {
+  $schema = array();
+
+  // In Drupal 8 we'll need 4 tables in order to support revisions and translations.
+  // You can find more information about this here: https://drupal.org/node/1722906
+
+  // The {entity} main table
+  $schema['demo_products'] = array(
+    'description' => 'The cupcake store table',
+    'fields' => array(
+      'product_id' => array(
+        'description' => 'The primary entity identifier.',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'name' => array(
+        'description' => 'The name of the cupcake',
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE
+      ),
+      // Defaults to NULL in order to avoid a brief period of potential
+      // deadlocks on the index.
+      'ingredients' => array(
+        'description' => 'The ingredients.',
+        'type' => 'varchar',
+        'size' => '60',
+        'not null' => FALSE
+      ),
+      'price' => array(
+        'description' => 'the price of the cupcake.',
+        'type' => 'varchar',
+        'length' => 48,
+        'not null' => TRUE
+      )
+    ),
+    'primary key' => array('product_id'),
+    
+  );
+
+  // The {entity_revision} table
+  $schema['demo_client'] = array(
+    'description' => 'Demo entity revision table.',
+    'fields' => array(
+      'client_id' => array(
+        'description' => 'The client ID.',
+        'type' => 'serial',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'name' => array(
+        'description' => 'Client name.',
+        'type' => 'varchar',
+        'length'=>'50',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'dir' => array(
+        'description' => 'dir.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE
+      ),
+      'cel' => array(
+        'description' => 'The {users}.uid that created this version.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'revision_timestamp' => array(
+        'description' => 'The Unix timestamp when the client.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      )
+    ),
+    'primary key' => array('revision_id')
+  );
+
+  // The {entity_field_data} table for Demo's own, non-FieldAPI, fields
+  // holding the current/active revision's data.
+  $schema['demo_purchase'] = array(
+    'description' => 'Demo entity field data.',
+    'fields' => array(
+      'purchase_id' => array(
+        'description' => 'The primary purchase identifier.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+      'client_id' => array(
+        'description' => 'The client id identifier.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'purchase_items' => array(
+        'description' => 'The purchase items.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE
+      ),
+      'created' => array(
+        'description' => 'The UNIX timestamp when the entity was created.',
+        'type' => 'int',
+        'size' => 'normal',
+        'not null' => TRUE,
+        'unsigned' => TRUE
+      ),
+    'primary key' => array('purchase_id'),
+    
+  );
+
+  
+
+  return $schema;
+}
+
+
+/**
+ * Implements hook_install().
+ */
+function demo_install() {
+  // Creates the Generic DemoType entity
+  entity_create('demo_type', array(
+    'label' => 'Generic Demo type',
+    'type' => 'generic',
+    'description' => 'A very informative text goes here.',
+    'settings' => array('published' => 0)
+  ))->save();
+}
+?>
